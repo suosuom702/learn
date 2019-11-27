@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件修饰符</title>
+    <script src="./vue.js"></script>
+    <style>
+    .inner{background-color: brown;
+    height: 150px
+    }
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+         <!-- 冒泡机制，从最里面的事件开始 修饰符.stop终止了冒泡事件 -->
+        <!-- <div class="inner" @click="div1">
+            <input type="button" value="点击" @click.stop="div2">
+        </div> -->
+        <!-- 修饰符.prevent终止了默认事件 -->
+        <a href="http://www.baidu.com" @click.prevent="clicklink">百度一下你就知道</a>
+    </div>
+  
+   
+
+    <script>
+    var vm=new Vue(
+        {
+            el:"#app",
+            data:{},
+            methods:{
+                div1(){
+                    console.log("11触发div点击事件");
+                },
+                div2(){
+                    console.log("222触发按钮点击事件");
+                },
+                clicklink(){
+                    console.log("弹出测试");
+                }
+            }
+        }
+    )
+    </script>
+    
+</body>
+</html>

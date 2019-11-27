@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h4>{{msg}}</h4>
+        <input type="button" value="滚动" @click="roll">
+        <input type="button" value="停止" @click="stop">
+    </div>
+    <script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            msg:"测试vue跑马灯效果！！",
+            IntervalId:null
+        },
+        methods:{
+            // roll:function(){
+
+            // }
+            //下面使用es6
+            roll(){
+                //var _this=this
+                //setInterval(function(){lamp函数
+                if(this.IntervalId!=null) return;
+                this.IntervalId =setInterval(()=>{
+                //console.log(this.msg)
+                //是打印不了的 ，如果想要调用data的数据或者methods方法必须使用this.数据属性名或者this.方法名
+                var start=this.msg.substring(0,1)
+                //获取到后面所有字符
+                var end=this.msg.substring(1)
+                this.msg=end+start
+                //vm实例会见厅自己身上data的里面所有数据的改变
+                },300)              
+            },
+            stop(){
+                clearInterval(this.IntervalId) 
+                this.IntervalId=null;
+            }
+
+        }
+    })
+    //这种滚动效果 就是截取字符串的最后一个字符放在第一个substring
+    //然后开启定时器 让他一直在这个操作
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <style>
+    [v-cloak]{
+        display: none;
+    }</style>
+</head>
+<body>
+    <div id="app">
+        <!-- 解决插值表达式闪烁的问题 就是说网速慢的话不会显示代码 -->
+        <p v-cloak>{{msg}}</p>
+        <!-- 默认v-text没有闪烁问题 相当于id，所以原先储存的的数值会被覆盖 -->
+        <h4 v-text="msg"></h4>
+        <div>{{msg2}}</div>
+        <div v-text="msg2"></div>
+        <div v-html="msg2"></div>
+        <!-- v-bind: 是用于绑定属性的指令 ，引号内可以当做一个表达式-->
+       
+        <input type="button" value="按钮" v-bind:title="mytitle + '123'">
+         <!-- v-bind可以被简写为  ： -->
+         <!-- v-on绑定事件 缩写是@-->
+        <input type="button" value="点击" :title="mytitle + '123'" @click="show">
+        <!-- 其他情况比如鼠标移上去 -->
+        <input type="button" value="划过" :title="mytitle + '123'" v-on:mouseover="show">
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+       var vm= new Vue({
+            el:'#app',
+            data:{
+                msg:"hello",
+                msg2:"<h1>world</h1>",
+                mytitle:"title名字",
+            },
+            methods:{//这个属性中定义了vue实例所有可用的方法
+                show: function() {
+                    alert("hello 6ss")
+                    
+                }
+
+            }
+        })
+
+    </script>
+</body>
+</html>
